@@ -1,0 +1,23 @@
+<%= simple_form_for @university do |f| %>
+	<%= f.error_notification %>
+	<% if current_user.admin %>
+		<%= f.input :univ_name, required: true, autofocus: true, :label => "University Name" %>
+	<% else %>
+		<%= f.input :univ_name, required: true, autofocus: true, :readonly => true, :label => "University Name" %>
+	<% end %>
+
+	<h3>Landholdings</h3>
+	<div class="nested-fields">
+		<%= f.simple_fields_for :university_profiles do |profile| %>
+			<%= render 'university_profile_fields', :f => profile %>
+		<% end %>
+
+		<!-- for future implementation of additional profiles-->
+		<%= button_tag :class => "btn btn-info" do %>
+			<% icon('add') %>
+			<% link_to_add_association 'Add a profile', f, :university_profiles %>
+		<% end %>
+	</div>
+	<%= f.button :submit, "Submit", :class => "btn btn-success" %>
+<% end %>
+<%= button_to "Back", universities_path, :class => "btn btn-warning" %>

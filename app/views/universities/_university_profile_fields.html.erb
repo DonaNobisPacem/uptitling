@@ -1,0 +1,68 @@
+<div class="nested-fields">
+	<div class="well">
+
+		<div class="col-xs-6">
+			<%= f.input :classification, :label => "Classification" %>
+		</div>
+		<div class="col-xs-6">
+			<%= f.input :description, :label => "Description/Location" %>
+		</div>
+
+		<div class="col-xs-6">
+			<%= f.input :owner, :label => "Owner" %>
+		</div>
+		<div class="col-xs-3">
+		<%= f.input :total_area_hectare, :label => "Total Area (in hectares)" %>
+		</div>
+		<div class="col-xs-3">
+		<%= f.input :total_area_meter, :label => "Total Area (in square meters)" %>
+		</div>
+
+		<div class="col-xs-8">
+			<div>
+				<%= f.input :acquisition, :label => "Mode of Acquisition" %>
+				<%= f.input :tax_dec_no, :label => "Tax Dec. No." %>
+			</div>
+		</div>
+		<div class="col-xs-2">
+		<%= f.input :titling_status, :label => "Titling Status" %>
+		</div>
+		<div class="col-xs-2">
+		<%= f.input :date_issued, as: :date, :label => "Date Issued", :start_year => Date.today.year, :end_year => 1900 %>
+		</div>
+
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseStep" aria-expanded="false" aria-controls="collapseStep">
+		  Steps to Land Titling
+		</button>
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRemark" aria-expanded="false" aria-controls="collapseRemark">
+		  Remarks
+		</button>
+		<div class="collapse" id="collapseStep">
+			<div class="well">
+				<%= f.input :titling_step_eins %>
+				<%= f.input :titling_step_zwei %>
+				<%= f.input :titling_step_drei %>
+				<%= f.input :titling_step_vier %>
+				<%= f.input :titling_step_funf %>
+				<%= f.input :titling_step_sechs %>
+				<%= f.input :titling_step_sieben %>
+				<%= f.input :titling_step_acht %>
+				<%= f.input :titling_step_neun %>
+				<%= f.input :titling_step_zehn %>
+			</div>
+		</div>
+		<div class="collapse" id="collapseRemark">
+			<div class="well">
+				<%= f.input :remarks %>
+			</div>
+		</div>
+
+		<%= button_tag :class => "btn btn-warning pull-right" do %>
+				<% icon('remove') %>
+				<% link_to_remove_association 'Remove', f %>
+		<% end %>
+	</div> <!-- well -->
+</div> <!-- nested field -->
+
+
+
