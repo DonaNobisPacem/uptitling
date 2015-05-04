@@ -1,5 +1,9 @@
 <div class="nested-fields">
-	<div class="well">
+	<div class="well well-sm">
+
+		<div class="col-xs-12">
+		<%= link_to_remove_association '<i class="fa fa-times"></i> Remove'.html_safe, f, :class => "btn btn-danger pull-right" %>
+		</div>
 
 		<div class="col-xs-6">
 			<%= f.input :classification, :label => "Classification" %>
@@ -18,11 +22,11 @@
 		<%= f.input :total_area_meter, :label => "Total Area (in square meters)" %>
 		</div>
 
-		<div class="col-xs-8">
-			<div>
-				<%= f.input :acquisition, :label => "Mode of Acquisition" %>
-				<%= f.input :tax_dec_no, :label => "Tax Dec. No." %>
-			</div>
+		<div class="col-xs-5">
+		<%= f.input :acquisition, :label => "Mode of Acquisition" %>
+		</div>
+		<div class="col-xs-3">
+		<%= f.input :tax_dec_no, :label => "Tax Dec. No." %>
 		</div>
 		<div class="col-xs-2">
 		<%= f.input :titling_status, :label => "Titling Status" %>
@@ -31,36 +35,38 @@
 		<%= f.input :date_issued, as: :date, :label => "Date Issued", :start_year => Date.today.year, :end_year => 1900 %>
 		</div>
 
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseStep" aria-expanded="false" aria-controls="collapseStep">
-		  Steps to Land Titling
-		</button>
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRemark" aria-expanded="false" aria-controls="collapseRemark">
-		  Remarks
-		</button>
-		<div class="collapse" id="collapseStep">
-			<div class="well">
-				<%= f.input :titling_step_eins %>
-				<%= f.input :titling_step_zwei %>
-				<%= f.input :titling_step_drei %>
-				<%= f.input :titling_step_vier %>
-				<%= f.input :titling_step_funf %>
-				<%= f.input :titling_step_sechs %>
-				<%= f.input :titling_step_sieben %>
-				<%= f.input :titling_step_acht %>
-				<%= f.input :titling_step_neun %>
-				<%= f.input :titling_step_zehn %>
+		<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li role="presentation" class="active"><a href="#step" data-toggle="tab">Steps to Land Titling</a></li>
+				<li role="presentation"> <a href="#remarks" data-toggle="tab">Remarks</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="step">
+					<div class="panel-body">
+						<div class="col-xs-6">
+						<%= f.input :titling_step_eins, :label => "Step 1" %>
+						<%= f.input :titling_step_zwei, :label => "Step 2" %>
+						<%= f.input :titling_step_drei, :label => "Step 3" %>
+						<%= f.input :titling_step_vier, :label => "Step 4" %>
+						<%= f.input :titling_step_funf, :label => "Step 5" %>
+						</div>
+						<div class="col-xs-6">
+						<%= f.input :titling_step_sechs, :label => "Step 6" %>
+						<%= f.input :titling_step_sieben, :label => "Step 7" %>
+						<%= f.input :titling_step_acht, :label => "Step 8" %>
+						<%= f.input :titling_step_neun, :label => "Step 9" %>
+						<%= f.input :titling_step_zehn, :label => "Step 10" %>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="remarks">
+					<div class="panel-body">
+						<%= f.input :remarks, :label => false %>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="collapse" id="collapseRemark">
-			<div class="well">
-				<%= f.input :remarks %>
-			</div>
-		</div>
+		</div> <!-- tabbable -->
 
-		<%= button_tag :class => "btn btn-warning pull-right" do %>
-				<% icon('remove') %>
-				<% link_to_remove_association 'Remove', f %>
-		<% end %>
 	</div> <!-- well -->
 </div> <!-- nested field -->
 
