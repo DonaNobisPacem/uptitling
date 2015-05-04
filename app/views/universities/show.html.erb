@@ -1,4 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_university_path(@university) %> |
-<%= link_to 'Back', universities_path %>
+<div class="panel panel-info">
+		<div class="panel-heading text-center">
+			<h1>
+				<b><%=@university.univ_name%></b>
+				<%= link_to '<i class="fa fa-edit"></i> Edit'.html_safe, edit_university_path(@university), :class => "btn btn-link pull-right" %>
+			</h1>
+		</div> <!-- panel heading -->
+		<div class="panel-body">
+
+			<% @university.university_profiles.each do |profile| %>
+				<div class="well">
+					<b>Classification: </b><%= profile.classification %> </br>
+					<b>Description/Location: </b><%= profile.description %> </br>
+					<b>Owner: </b><%= profile.owner %> </br>
+					<b>Total Area(Hectares): </b><%= profile.total_area_hectare %> </br>
+					<b>Total Area(Sq. Meters): </b><%= profile.total_area_meter %> </br>
+					<b>Mode of Acquisition: </b><%= profile.acquisition %> </br>
+					<b>Titling Status: </b><%= profile.titling_status %> </br>
+					<b>Date Issued: </b><%= profile.date_issued %> </br>
+					<b>Tax Dec. No.: </b><%= profile.tax_dec_no %> </br>
+					<b>Remarks:</b></br>
+					<div class="well">
+						<%= profile.remarks %>
+					</div>
+
+					<a class="btn btn-primary" data-toggle="collapse" href="#collapseSteps_<%= profile.id %>" aria-expanded="false" aria-controls="collapseSteps"> Show Steps to Land Titling </a>
+					<div class="collapse" id="collapseSteps_<%= profile.id %>">
+  						<div class="well">
+							<b>Step 1:</b></br> <%= simple_format(profile.titling_step_eins) %>
+							<b>Step 2:</b></br> <%= simple_format(profile.titling_step_zwei) %>
+							<b>Step 3:</b></br> <%= simple_format(profile.titling_step_drei) %>
+							<b>Step 4:</b></br> <%= simple_format(profile.titling_step_vier) %>
+							<b>Step 5:</b></br> <%= simple_format(profile.titling_step_funf) %>
+							<b>Step 6:</b></br> <%= simple_format(profile.titling_step_sechs) %>
+							<b>Step 7:</b></br> <%= simple_format(profile.titling_step_sieben) %>
+							<b>Step 8:</b></br> <%= simple_format(profile.titling_step_acht) %>
+							<b>Step 9:</b></br> <%= simple_format(profile.titling_step_neun) %>
+							<b>Step 10:</b></br> <%= simple_format(profile.titling_step_zehn) %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div> <!-- panel body -->
+</div> <!-- panel info -->
