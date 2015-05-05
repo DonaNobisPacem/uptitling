@@ -11,7 +11,7 @@
 		<div class="col-xs-12">
 			<%= link_to '<i class="fa fa-edit"></i> Edit'.html_safe, edit_university_path(@university), :class => "btn btn-link pull-right" %>
 		</div>
-		
+
 		<div class="panel-body">
 			<% @university_profiles.each do |profile| %>
 				<div class="well">
@@ -25,10 +25,13 @@
 					<b>Date Issued: </b><%= profile.date_issued.strftime("%d %B %Y") if profile.date_issued %> </br>
 					<b>Tax Dec. No.: </b><%= profile.tax_dec_no %> </br>
 					<b>Remarks:</b></br>
-					<div class="well">
-						<%= profile.remarks %>
-					</div>
-
+					<% if profile.remarks.length > 0 %>
+						<div class="well">
+							<%= profile.remarks %>
+						</div>
+					<% else %>
+						<br>
+					<% end %>
 					<a class="btn btn-primary" data-toggle="collapse" href="#collapseSteps_<%= profile.id %>" aria-expanded="false" aria-controls="collapseSteps"> Show Steps to Land Titling </a>
 					<div class="collapse" id="collapseSteps_<%= profile.id %>">
   						<div class="well">
