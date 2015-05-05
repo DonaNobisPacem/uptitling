@@ -60,3 +60,7 @@ gem 'devise'
 # File upload + handling
 gem 'carrierwave'
 gem 'mini_magick'
+
+# Pagination
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'

@@ -4,12 +4,16 @@
 		<div class="panel-heading text-center">
 			<h1>
 				<b><%=@university.univ_name%></b>
-				<%= link_to '<i class="fa fa-edit"></i> Edit'.html_safe, edit_university_path(@university), :class => "btn btn-link pull-right" %>
 			</h1>
+			<h5>Number of landholdings: <%= @university_profiles.count %></h5>
 		</div> <!-- panel heading -->
-		<div class="panel-body">
 
-			<% @university.university_profiles.each do |profile| %>
+		<div class="col-xs-12">
+			<%= link_to '<i class="fa fa-edit"></i> Edit'.html_safe, edit_university_path(@university), :class => "btn btn-link pull-right" %>
+		</div>
+		
+		<div class="panel-body">
+			<% @university_profiles.each do |profile| %>
 				<div class="well">
 					<b>Classification: </b><%= profile.classification %> </br>
 					<b>Description/Location: </b><%= profile.description %> </br>
@@ -18,7 +22,7 @@
 					<b>Total Area(Sq. Meters): </b><%= profile.total_area_meter %> </br>
 					<b>Mode of Acquisition: </b><%= profile.acquisition %> </br>
 					<b>Titling Status: </b><%= profile.titling_status %> </br>
-					<b>Date Issued: </b><%= profile.date_issued %> </br>
+					<b>Date Issued: </b><%= profile.date_issued.strftime("%d %B %Y") if profile.date_issued %> </br>
 					<b>Tax Dec. No.: </b><%= profile.tax_dec_no %> </br>
 					<b>Remarks:</b></br>
 					<div class="well">
@@ -42,5 +46,8 @@
 					</div>
 				</div>
 			<% end %>
+			<div class="pull-right">
+				<%= will_paginate @university_profiles, renderer: BootstrapPagination::Rails %>
+			</div>
 		</div> <!-- panel body -->
 </div> <!-- panel info -->

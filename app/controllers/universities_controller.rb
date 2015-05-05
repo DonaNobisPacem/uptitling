@@ -66,6 +66,7 @@ class UniversitiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_university
       @university = University.find(params[:id])
+      @university_profiles = @university.university_profiles.paginate(:page => params[:page], :per_page => 10)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
